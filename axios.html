@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AXIOS</title>
+    </head>
+    <body>
+        <input type="button" value="get" id="get">
+        <input type="button" value="post" id="post">
+        <script src="https://unpkg.com/axios@0.21.0/dist/axios.min.js"></script>
+        <script>
+            let gets = document.getElementById("get");
+            let posts = document.getElementById("post");
+            gets.onclick = function(){
+                axios.get("/axios")
+                .then(function(response){
+                    console.log(response);
+                },function(err){
+                    console.log(err);
+                })
+            }
+            posts.onclick = function(){
+                axios.post("/axios",{key:'value'})
+                .then(function(response){
+                    console.log(response);
+                },function(err){
+                    console.log(err);
+                })
+            }
+        </script>
+    </body>
+</html>

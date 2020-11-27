@@ -1,0 +1,33 @@
+<!DOCTYPE html><html>
+    <head>
+        <title>Index</title>
+    </head>
+    <body>
+        <div id="app">
+            <input type="button" value="get" @click="getAPI">
+            <p>{{content}}</p>
+            <a href="vue.html">VUE</a>
+            <a href="axios.html">AXIOS</a>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="https://unpkg.com/axios@0.21.0/dist/axios.min.js"></script>
+        <script>
+            var app=new Vue({
+                el:'#app',
+                data:{
+                    content:"hahahahaha"
+                },
+                methods:{
+                    getAPI:function(){
+                        axios.get("https://autumnfish.cn/api/joke")
+                        .then((response)=>{
+                            this.content = response.data;
+                        },(err)=>{
+                            this.content = err.data;
+                        })
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
