@@ -51,11 +51,13 @@
             var app=new Vue({
                 el:'#app',
                 data(){
-                    message:'可为表达式',
-                    content:'<a href="#">v-html解析为html</a>',
-                    isShow:'false',
-                    arr:[1,2,3,4,5],
-                    objArr:[{name:1},{name:2}]
+                    return{
+                        message:'可为表达式',
+                        content:'<a href="#">v-html解析为html</a>',
+                        isShow:'false',
+                        arr:[1,2,3,4,5],
+                        objArr:[{name:1},{name:2}]
+                    }
                 },
                 methods:{
                     doIt:function(para1){
