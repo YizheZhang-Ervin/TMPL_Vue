@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VF</title>
+</head>
+<body>
+
+<div id="vf-app">
+    <input type="text" v-model="someStr">
+    <input type="text" v-model="child.someStr">
+    <!-- <p v-class="className" class="abc">
+        {{someStr}}
+        <span v-text="child.someStr"></span>
+    </p> -->
+    <p>{{ getHelloWord }}</p>
+    <p v-html="htmlStr"></p>
+    <button v-on:click="clickBtn">change model</button>
+</div>
+
+<script src="./lib/observer.js"></script>
+<script src="./lib/watcher.js"></script>
+<script src="./lib/compile.js"></script>
+<script src="./lib/main.js"></script>
+<script>
+    var vm = new VF({
+        el: '#vf-app',
+        data: {
+            someStr: 'hello ',
+            className: 'btn',
+            htmlStr: '<span style="color: #f00;">red</span>',
+            child: {
+                someStr: 'World !'
+            }
+        },
+
+        computed: {
+            getHelloWord: function() {
+                return this.someStr + this.child.someStr;
+            }
+        },
+
+        methods: {
+            clickBtn: function(e) {
+                var randomStrArr = ['childOne', 'childTwo', 'childThree'];
+                this.child.someStr = randomStrArr[parseInt(Math.random() * 3)];
+            }
+        }
+    });
+
+    vm.$watch('child.someStr', function() {
+        console.log(arguments);
+    });
+</script>
+
+</body>
+</html>
