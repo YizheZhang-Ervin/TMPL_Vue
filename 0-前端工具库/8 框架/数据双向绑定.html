@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <input type="text" id="input"/>
+        <p id="output"></p>
+        <script>
+            let binding2Way = (data, attr, element) => {
+                Object.defineProperty(data, attr, {
+                    configurable: true,
+                    get: function () {
+                        return element.value
+                    },
+                    set: function (newValue) {
+                        element.innerHTML = newValue;
+                    }
+                })
+            }
+
+            // test
+            let data = {};
+            let input = document.getElementById("input");
+            let output = document.getElementById("output");
+            binding2Way(data, "content", output);
+
+            input.addEventListener('keyup',(e)=>{
+                data.content = e.target.value;
+            })
+
+        </script>
+    </body>
+
+</html>

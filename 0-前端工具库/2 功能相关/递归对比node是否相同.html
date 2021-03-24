@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section id="test1">
+        <div>
+            <p></p>
+        </div>
+        <div>
+            <p></p>
+        </div>
+    </section>
+    <section id="test2">
+        <div></div>
+    </section>
+    <script>
+        // Document.body 写function 对比两个body 是否一致，要求递归
+        // dom树操作的，考递归
+        let node1 = document.getElementById("test1");
+        let node2 = document.getElementById("test2");
+        let judgeSame = (node1,node2)=> {
+            // 节点子节点数量不一致
+            if(node1.childNodes.length!=node2.childNodes.length){
+                return false;
+            }
+            // 循环遍历每个子节点
+            for(let i=0;i<node1.childNodes.length;i++){
+                // 子节点长度非1
+                if(node1.childNodes.length!=1){
+                    let flag = judgeSame(node1.childNodes[i],node2.childNodes[i]);
+                    if(!flag){
+                        return false;
+                    }
+                // 子节点列表长度为1
+                }else{
+                    // 节点类型名相同
+                    if(node1.nodeName!=node2.nodeName){
+                        return false;
+                    }
+                }
+
+            }
+            return true;
+        }
+        console.log(judgeSame(node1,node1));
+    </script>
+</body>
+</html>
